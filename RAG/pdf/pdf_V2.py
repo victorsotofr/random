@@ -89,13 +89,13 @@ def main():
     print("\nReady for questions! Type 'exit' to quit.")
     
     while True:
-        query = input("\n❓ Your question: ").strip()
+        query = input("\n✑ Your question: ").strip()
         if query.lower() == "exit":
             print("\nExiting. Thanks for using the PDF Q&A system by Victor SOTO!")
             break
         
         answer = query_documents(query, retriever)
-        print("\n💡 Answer:\n", answer)
+        print("\nAnswer:\n", answer)
 
 if __name__ == "__main__":
     main()

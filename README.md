@@ -1,6 +1,6 @@
 # Random Stuff
 
-Random stuff
+Random stuff that I did for fun, or not.
 
 - Small RAG projects for fun
 

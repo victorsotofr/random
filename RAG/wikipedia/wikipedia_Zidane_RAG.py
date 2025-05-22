@@ -120,7 +120,7 @@ graph = graph_builder.compile()
 print("\n Give us your question! I am stronger if we talk about Zidane ⚽️.")
 
 while True:
-    question = input("\n ❓ Your question: ").strip()
+    question = input("\n Your question: ").strip()
 
     if question.lower() == "exit": # Exit condition
         print("Thanks for using us!")
@@ -129,4 +129,4 @@ while True:
     # Get response from the RAG system
     response = graph.invoke({"question": question})
 
-    print(f"💡 Answer: {response['answer']}")
+    print(f"Answer: {response['answer']}")
