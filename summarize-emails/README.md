@@ -1,8 +1,10 @@
 # Summarize emails
 
-I created this little summarizing .py file to get a quick view of the key news, since I am receiving quite a lot of newsletter and don't want to unsuscribe (FOMO effect...)
+I created this little `summarize.py` file to get a quick view of the key news.
 
-**fetches** all Gmail messages from today with the label news + **summarizes** them accurately using GPT-4o (with map-reduce to ensure factual recall), and clusters them into 2–6 clear, themed sections.
+Indeed, I'm receiving quite a lot of newsletters and didn't want to unsuscribe, but rather get the most out of them quite quickly (FOMO effect...).
+
+What is does: **fetches** all Gmail messages from today with the label news + **summarizes** them accurately using GPT-4o (with map-reduce to ensure factual recall), and clusters them into 2–6 clear, themed sections.
 
 Each theme includes a headline + 3–8 bullet points with key numbers and facts + A sources line referencing the original emails
 
