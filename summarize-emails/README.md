@@ -6,7 +6,9 @@ Indeed, I'm receiving quite a lot of newsletters and didn't want to unsuscribe, 
 
 What is does: **fetches** all Gmail messages from today with the label news + **summarizes** them accurately using GPT-4o (with map-reduce to ensure factual recall), and clusters them into 2–6 clear, themed sections.
 
-Each theme includes a headline + 3–8 bullet points with key numbers and facts + A sources line referencing the original emails
+Each theme includes a headline + 3–8 bullet points with key numbers and facts + A sources line referencing the original emails.
+
+The summary will be to me each day at 12am to my email adress.
 
 ---
 

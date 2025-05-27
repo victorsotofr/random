@@ -6,6 +6,9 @@ from openai import OpenAI
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from email.mime.text import MIMEText
+import base64
+import markdown2
 
 #################################################################
 # CONFIGURATION
@@ -17,7 +20,10 @@ LABEL = "news"
 MAX_EMAILS = 50
 model = "gpt-4o"
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+SCOPES = [
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.send"
+]
 
 ##################################################################
 # FUNCTIONS
@@ -136,6 +142,33 @@ def final_digest(fact_packs):
     )
     return resp.choices[0].message.content
 
+# 4-EMAIL SENDING FUNCTION
+def send_digest_email(service, summary_md, to_email):
+    subject = f"➤ News at midi – {datetime.date.today():%d %b %Y}"
+
+    html_body = markdown2.markdown(summary_md)
+
+    html = f"""
+    <html>
+    <body>
+    <pre style="font-family: sans-serif; line-height: 1.2;">
+    {html_body}
+    </body>
+    </html>
+    """
+
+    message = MIMEText(html, "html")
+    message["to"] = to_email
+    message["from"] = to_email
+    message["subject"] = subject
+
+    raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+
+    service.users().messages().send(
+        userId="me", body={"raw": raw}
+    ).execute()
+
+
 # MAIN EXECUTION
 if __name__ == "__main__":
     print("Authenticating with Gmail...")
@@ -149,3 +182,5 @@ if __name__ == "__main__":
         print("Summarizing today's emails...")
         summary = final_digest(email_summaries)
         print(f"Recap of {datetime.date.today():%d %b %Y}:\n" + summary)
+        send_digest_email(gmail, summary, "vsoto4u@gmail.com")
+        print("Digest sent to the inbox.")
