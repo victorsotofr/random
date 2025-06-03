@@ -144,7 +144,7 @@ def final_digest(fact_packs):
 
 # 4-EMAIL SENDING FUNCTION
 def send_digest_email(service, summary_md, to_email):
-    subject = f"➤ News at midi – {datetime.date.today():%d %b %Y}"
+    subject = f"➤ News of the day – {datetime.date.today():%d %b %Y}"
 
     html_body = markdown2.markdown(summary_md)
 
